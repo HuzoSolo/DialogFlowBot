@@ -17,11 +17,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // DialogFlow API endpoint
 app.post('/send-message', async (req, res) => {
-    const sessionClient = new SessionsClient();
-    const sessionPath = sessionClient.projectAgentSessionPath(
-        'YOUR_PROJECT_ID', // DialogFlow projesi ID'si
-        'unique-session-id' // Her kullanıcı için farklı bir ID oluşturabilirsiniz
-    );
+   const sessionClient = new SessionsClient({
+      keyFilename: path.join(__dirname, 'original-glider-445711-a3-bc0122a7f076.json'), // Dosyanın tam yolu
+    });
 
     const request = {
         session: sessionPath,
